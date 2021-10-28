@@ -1,0 +1,85 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Asignaturas {
+  id              Int @id
+  idGrado         Int
+  idTemporada     Int
+  idAsignatura    Int
+  name            String
+  date            String
+  caracter        String
+  credits         Int
+  language        String
+  places          Int
+  enrolled        Int
+  passed          Int?
+  failed          Int?
+  nP              Int?
+  passRate        Decimal?
+  rendRate        Decimal?
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  Belong  Belong[]
+  Imparte Imparte[]
+}
+
+model Teachers {
+  id              Int     @id 
+  username        String
+  name            String
+  surname         String
+  email           String
+  web             String?
+  xp              Int
+  totalVotes      Int
+  salt            String
+  passwd          String
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  Imparte Imparte[]
+}
+
+model Students {
+  id              Int       @id
+  username        String
+  email           String
+  name            String
+  surname         String 
+  web             String?
+  salt            String
+  passwd          String
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  Belong  Belong[]
+}
+
+model Imparte {
+  id            Int @id
+  asignatura    Asignaturas @relation(fields: [idAsignatura], references: [id])
+  idAsignatura  Int
+  teacher       Teachers @relation(fields: [idTeacher], references: [id])
+  idTeacher     Int
+  rol           String
+}
+model Belong {
+  id            Int         @id
+  asignatura    Asignaturas @relation(fields: [idAsignatura], references: [id])
+  idAsignatura  Int
+  student    Students @relation(fields: [idStudent], references: [id])
+  idStudent  Int
+}
+
