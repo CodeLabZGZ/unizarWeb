@@ -10,46 +10,46 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model Asignaturas {
+model Subjects {
   id              Int @id
-  idGrado         Int
-  idTemporada     Int
-  idAsignatura    Int
+  idDegree        Int
+  idSeason        Int
+  idSubject       Int
   name            String
-  date            String
+  course          String
   caracter        String
-  credits         Int
-  language        String
-  places          Int
-  enrolled        Int
+  credits         Int @default(6)
+  language        String @default("español")
+  places          Int?
+  enrolled        Int?
   passed          Int?
   failed          Int?
-  nP              Int?
+  notPresented    Int?
   passRate        Decimal?
   rendRate        Decimal?
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
   Belong  Belong[]
-  Imparte Imparte[]
+  Impart Impart[]
 }
 
 model Teachers {
   id              Int     @id 
   username        String
   name            String
-  surname         String
+  lastName        String
   email           String
   web             String?
-  xp              Int
-  totalVotes      Int
+  xp              Int @default(0)
+  totalVotes      Int @default(0)
   salt            String
   passwd          String
 
   createdAt       DateTime @default(now())
   updatedAt       DateTime @updatedAt
 
-  Imparte Imparte[]
+  Impart Impart[]
 }
 
 model Students {
@@ -57,7 +57,7 @@ model Students {
   username        String
   email           String
   name            String
-  surname         String 
+  lastName        String 
   web             String?
   salt            String
   passwd          String
@@ -67,19 +67,19 @@ model Students {
   Belong  Belong[]
 }
 
-model Imparte {
-  id            Int @id
-  asignatura    Asignaturas @relation(fields: [idAsignatura], references: [id])
-  idAsignatura  Int
-  teacher       Teachers @relation(fields: [idTeacher], references: [id])
-  idTeacher     Int
-  rol           String
-}
-model Belong {
-  id            Int         @id
-  asignatura    Asignaturas @relation(fields: [idAsignatura], references: [id])
-  idAsignatura  Int
-  student    Students @relation(fields: [idStudent], references: [id])
-  idStudent  Int
+model Impart {
+  id        Int @id
+  subject   Subjects @relation(fields: [idSubject], references: [id])
+  idSubject Int
+  teacher   Teachers @relation(fields: [idTeacher], references: [id])
+  idTeacher Int
+  rol       String
 }
 
+model Belong {
+  id          Int @id
+  subject     Subjects @relation(fields: [idSubject], references: [id])
+  idSubject   Int
+  student     Students @relation(fields: [idStudent], references: [id])
+  idStudent   Int
+}
