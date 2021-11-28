@@ -5,6 +5,7 @@ import { sidebarLinks } from "../../data/links"
 
 export default function Sidebar() {
   const { data: session } = useSession()
+
   return (
     <div className="h-full bg-color-light-neutral-2  w-60 relative rounded-tr-md rounded-br-md">
       {/* Logotipo */}
@@ -26,7 +27,11 @@ export default function Sidebar() {
         {!session ? (
           <button
             type="button"
-            onClick={signIn}
+            onClick={() =>
+              signIn("google", {
+                redirect: false,
+              })
+            }
             className="flex items-center justify-center gap-x-2 w-full px-2 py-2.5 rounded bg-white shadow"
           >
             <div className="flex items-center gap-x-2">
@@ -39,7 +44,7 @@ export default function Sidebar() {
         ) : (
           <button
             type="button"
-            onClick={signOut}
+            onClick={() => signOut()}
             className="flex items-center gap-x-2 w-full px-2 py-2.5 rounded border-2 border-red-500 hover:bg-red-200"
           >
             <p className="mx-auto text-base font-medium text-black truncate overflow-clip overflow-hidden tracking-tight">

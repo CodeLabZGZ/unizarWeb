@@ -16,5 +16,6 @@ export const sidebarLinks = [
   {
     icon: <FiPaperclip className="w-5 h-5 " />,
     text: "Secretaria Virtual",
+    url: "http://academico.unizar.es/secretaria-virtual",
   },
 ]
