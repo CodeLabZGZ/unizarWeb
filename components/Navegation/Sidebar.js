@@ -1,5 +1,5 @@
 import { FcGoogle } from "react-icons/fc"
-import NavButton from "./../Buttons/NavButton.js"
+import NavButton from "../Buttons/NavButton.js"
 import { useSession, signIn, signOut } from "next-auth/react"
 import { sidebarLinks } from "../../data/links"
 
@@ -7,7 +7,7 @@ export default function Sidebar() {
   const { data: session } = useSession()
 
   return (
-    <div className="h-full bg-color-light-neutral-2  w-60 relative rounded-tr-md rounded-br-md">
+    <div className="h-full bg-color-light-neutral-2  min-w-60 w-60 relative rounded-tr-md rounded-br-md">
       {/* Logotipo */}
       <div className="flex items-center justify-center w-full h-16 p-2">
         unizar
@@ -17,6 +17,7 @@ export default function Sidebar() {
         {sidebarLinks.map((item, idx) => (
           <NavButton
             key={idx}
+            url = {item.url}
             icon={item.icon}
             text={item.text}
             classNameDiv={`hover:bg-color-light-neutral-1 hover:shadow`}

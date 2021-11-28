@@ -7,7 +7,7 @@ export default function Layout({ children }) {
       <Meta />
       <div className="h-screen flex">
         <Sidebar />
-        <main className="flex-auto px-8 py-6">{children}</main>
+        <main className="flex-auto py-6">{children}</main>
       </div>
     </>
   )
