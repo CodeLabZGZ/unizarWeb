@@ -1,10 +1,8 @@
-import Preview from "../Cards/Preview"
 import { FiEdit2 } from "react-icons/fi";
-
 
 export default function Section({title, stat1, stat2, stat3, items}) {
   return (
-    <section className="px-8">
+    <section>
       <div className="flex justify-between mb-4 rounded-xl bg-gray-100">
         <p className="text-lg font-semibold text-gray-900 mb-0 py-2 px-3">{title}</p>
         <div className="flex gap-x-5 px-3">
@@ -22,17 +20,8 @@ export default function Section({title, stat1, stat2, stat3, items}) {
           </div>
         </div>
       </div>
-        <div className="flex gap-x-4">
-          {items.map((item, idx) =>
-              <Preview 
-                key={idx}
-                img={item.img}
-                name={item.name}
-                desc={item.desc}
-                linkCard={item.linkCard}
-                linkMap={item.linkMap}
-              />
-          )}
+      <div className="flex gap-x-4 overflow-x-auto pb-2">
+        {items.map(item => item)}
       </div>
     </section>
   )

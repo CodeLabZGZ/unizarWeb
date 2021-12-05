@@ -7,7 +7,11 @@ export default function Layout({ children }) {
       <Meta />
       <div className="h-screen flex">
         <Sidebar />
-        <main className="flex-auto py-6">{children}</main>
+        <div className="flex-auto overflow-y-auto">
+          <main className="py-6">
+            {children}
+          </main>
+        </div>
       </div>
     </>
   )

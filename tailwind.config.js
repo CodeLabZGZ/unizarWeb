@@ -53,7 +53,8 @@ module.exports = {
         "color-light-neutral-7": "#eff2f5",
       },
       minWidth: {
-        60: "15rem"
+        60: "15rem",
+        64: "16rem"
       },
       maxWidth: {
         64: "16rem"

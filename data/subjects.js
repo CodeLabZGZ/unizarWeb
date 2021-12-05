@@ -1,4 +1,69 @@
 export const items = [
+  [
+    {
+      
+      img: "https://i.ytimg.com/vi/OBif6i42DrE/maxresdefault.jpg",
+      name: "Programación 1",
+      desc: "6 créditos",
+      linkCard: "http://localhost:3000/careers/index",
+      linkMap: "https://goo.gl/maps/n2pKC6H7ex3DA4tc6",
+    },  {
+      img: "https://img.lagaceta.com.ar/fotos/notas/2018/10/30/este-ano-actividad-industrial-caera-23porciento-788170-233951.jpg",
+      name: "Programación 2",
+      desc: "6 créditos",
+      linkCard: "http://localhost:3000/careers/index",
+      linkMap:  "https://goo.gl/maps/n2pKC6H7ex3DA4tc6",
+    }
+  ],
+  [
+    {
+      
+      img: "https://i.ytimg.com/vi/OBif6i42DrE/maxresdefault.jpg",
+      name: "Estructuras de datos y algoritmos",
+      desc: "6 créditos",
+      linkCard: "http://localhost:3000/careers/index",
+      linkMap: "https://goo.gl/maps/n2pKC6H7ex3DA4tc6",
+    },  {
+      img: "https://img.lagaceta.com.ar/fotos/notas/2018/10/30/este-ano-actividad-industrial-caera-23porciento-788170-233951.jpg",
+      name: "Teoría de la programación",
+      desc: "6 créditos",
+      linkCard: "http://localhost:3000/careers/index",
+      linkMap:  "https://goo.gl/maps/n2pKC6H7ex3DA4tc6",
+    }
+  ],
+  [
+    {
+      
+      img: "https://i.ytimg.com/vi/OBif6i42DrE/maxresdefault.jpg",
+      name: "Arquitectura",
+      desc: "5 años",
+      linkCard: "http://localhost:3000/careers/index",
+      linkMap: "https://goo.gl/maps/n2pKC6H7ex3DA4tc6",
+    },  {
+      img: "https://img.lagaceta.com.ar/fotos/notas/2018/10/30/este-ano-actividad-industrial-caera-23porciento-788170-233951.jpg",
+      name: "Industriales",
+      desc: "4 años",
+      linkCard: "http://localhost:3000/careers/index",
+      linkMap:  "https://goo.gl/maps/n2pKC6H7ex3DA4tc6",
+    }
+  ],
+  [
+    {
+      
+      img: "https://i.ytimg.com/vi/OBif6i42DrE/maxresdefault.jpg",
+      name: "Arquitectura",
+      desc: "5 años",
+      linkCard: "http://localhost:3000/careers/index",
+      linkMap: "https://goo.gl/maps/n2pKC6H7ex3DA4tc6",
+    },  {
+      img: "https://img.lagaceta.com.ar/fotos/notas/2018/10/30/este-ano-actividad-industrial-caera-23porciento-788170-233951.jpg",
+      name: "Industriales",
+      desc: "4 años",
+      linkCard: "http://localhost:3000/careers/index",
+      linkMap:  "https://goo.gl/maps/n2pKC6H7ex3DA4tc6",
+    }
+  ],
+  [
     {
       
       img: "https://i.ytimg.com/vi/OBif6i42DrE/maxresdefault.jpg",
@@ -56,5 +121,5 @@ export const items = [
       linkCard: "http://localhost:3000/careers/index",
       linkMap:  "https://goo.gl/maps/n2pKC6H7ex3DA4tc6",
     }
-    
   ]
+]

@@ -1,7 +1,7 @@
 import Link from "next/link"
-import { FiMap } from "react-icons/fi";
+import { FiHeart } from "react-icons/fi";
 
-export default function Preview({img, name, desc, linkCard, linkMap}) {
+export default function SubjectPreview({img, name, desc, linkCard, linkMap}) {
   return (
     <div className="bg-color-light-neutral-2 h-full max-w-64 min-w-64 p-2 rounded-xl relative">
       <Link href={linkCard}>
@@ -15,11 +15,9 @@ export default function Preview({img, name, desc, linkCard, linkMap}) {
           </div>
         </a>
       </Link>
-      <Link href={linkMap}>
         <a className="absolute bottom-0 right-0 mb-5 mr-6 cursor-pointer">
-          <FiMap className="h-6 w-6 hover:opacity-70 z-50"/>
+          <FiHeart className="h-6 w-6 hover:opacity-70 z-50"/>
         </a>
-      </Link>
     </div>
   )
 }
