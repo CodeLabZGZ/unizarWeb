@@ -4,12 +4,15 @@ import { FiChevronLeft, FiChevronRight, FiHeart } from "react-icons/fi"
 import { items } from "data/subjects"
 import SubjectPreview from "components/Cards/SubjectPreview"
 import Section from "components/Content/Section"
+import GetGrade from "libs/GetGrade"
+import SubjectGraph from "components/Cards/SubjectGraph.js"
 
 export default function Grados() {
   const listaItems = items.map((item, curso) => {
     return (
         <div key={curso} className="px-8">
-          <Section title={curso + 1} 
+          <Section 
+            title={GetGrade(curso+1)} 
             stat1={0} 
             stat2={0} 
             stat3={0}
@@ -40,13 +43,9 @@ export default function Grados() {
               className="w-full h-full rounded-lg object-cover object-center"
             />
         </div>
-        <div className="h-72 flex gap-x-1 w-full">
+        <div className="h-82 flex gap-x-1 w-full">
           <div className="w-1/2 bg-gray-100 rounded-tl-lg rounded-bl-lg">
-            <img 
-              src={"https://images.unsplash.com/photo-1567620905732-2d1ec7ab7445?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=780&q=80"} 
-              alt={"Estadisticas_asignatura"} 
-              className="w-full h-full rounded-tl-lg rounded-bl-lg object-cover object-center"
-            />
+            <SubjectGraph />
           </div> 
 
           <div className="w-1/2 bg-gray-100 rounded-tr-lg rounded-br-lg p-5">
