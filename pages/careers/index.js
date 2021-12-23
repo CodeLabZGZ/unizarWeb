@@ -1,6 +1,6 @@
 import Layout from "components/Layout"
 import Section from "components/Content/Section"
-import Stadistics from "components/Cards/Stadistics"
+import Stadistics from "components/Stadistics/WebStats"
 import Preview from "components/Cards/Preview"
 import { example, items } from "data/careers"
 

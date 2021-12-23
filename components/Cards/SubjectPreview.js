@@ -1,19 +1,9 @@
 import Link from "next/link"
 import { FiHeart } from "react-icons/fi"
 
-export default function SubjectPreview({
-  id,
-  img,
-  name,
-  desc,
-  linkCard,
-  func,
-}) {
+export default function SubjectPreview({ img, name, desc, linkCard }) {
   return (
-    <div
-      onClick={(e) => func(id)}
-      className="bg-color-light-neutral-2 h-full max-w-64 min-w-64 p-2 rounded-xl relative"
-    >
+    <div className="bg-color-light-neutral-2 h-full max-w-64 min-w-64 p-2 rounded-xl relative">
       <Link href={linkCard}>
         <a>
           <div className="shadow-md rounded-xl">
