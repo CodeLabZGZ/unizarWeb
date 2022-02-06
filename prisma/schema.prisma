@@ -10,52 +10,31 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Carrers {
+  img  String 
+  name  String @id
+  duration  Int
+  mapsLocation String
+  branchKnowledge String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  subjects Subjects[]
+}
+
 model Subjects {
-  id              Int @id
-  idDegree        Int
-  idSeason        Int
-  idSubject       Int
-  name            String
-  course          String
-  caracter        String
-  credits         Int @default(6)
-  language        String @default("español")
-  places          Int?
-  enrolled        Int?
-  passed          Int?
-  failed          Int?
-  notPresented    Int?
-  passRate        Decimal?
-  rendRate        Decimal?
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-
-  connection connection[]
-}
-
-model Users {
-  id              Int     @id 
-  username        String
-  name            String
-  lastName        String
-  email           String
-  web             String?
-  xp              Int?
-  totalVotes      Int?
-  salt            String
-  passwd          String
-
-  createdAt       DateTime @default(now())
-  updatedAt       DateTime @updatedAt
-
-  connection connection[]
-}
-
-model connection {
-  id        Int @id
-  subject   Subjects @relation(fields: [idSubject], references: [id])
-  idSubject Int
-  user      Users @relation(fields: [idUser], references: [id])
-  idUser    Int
-  rol       String
+  img String
+  name String @id
+  credits Int @default(6)
+  year Int
+  place String
+  notPresented Int?
+  failed Int?
+  passed Int?
+  notables Int?
+  sobresalientes Int?
+  matriculasHonor Int?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  carrer Carrers @relation(fields: [carrerId], references: [name])
+  carrerId String
 }

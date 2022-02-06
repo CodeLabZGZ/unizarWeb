@@ -19,8 +19,6 @@ export default function Careers() {
   }
 
   const artesHumanidades = getCategory(example)
-
-  console.log(artesHumanidades)
   const ciencias = getCategory(example)
   const saludSalud = getCategory(example)
   const socialesJuridicas = getCategory(example)

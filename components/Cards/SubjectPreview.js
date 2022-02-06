@@ -1,5 +1,4 @@
 import Link from "next/link"
-import { FiHeart } from "react-icons/fi"
 
 export default function SubjectPreview({ img, name, desc, linkCard }) {
   return (
@@ -17,9 +16,6 @@ export default function SubjectPreview({ img, name, desc, linkCard }) {
           </div>
         </a>
       </Link>
-      <button className="absolute bottom-0 right-0 mb-5 mr-6 cursor-pointer">
-        <FiHeart className="h-6 w-6 hover:opacity-70 z-50" />
-      </button>
     </div>
   )
 }

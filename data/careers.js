@@ -73,7 +73,7 @@ export const items = [
     linkMap: "https://goo.gl/maps/n2pKC6H7ex3DA4tc6",
   },
   {
-    img: "http://www.usm.cl/assets/img/carreras/fotos/concepcion-tecnico-universitario-en-mecanica-industrial.w700.jpg",
+    img: "https://firmezasolutions.com/wp-content/uploads/2020/08/Portada-Firmeza-1-scaled.jpg",
     name: "Mecánica",
     desc: "4 años",
     linkCard: "http://localhost:3000/careers/index",
