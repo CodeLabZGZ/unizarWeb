@@ -1,6 +1,5 @@
 import Layout from "components/Layout"
 import Stadistics from "components/Stadistics/WebStats"
-import { items } from "data/subjects"
 import SubjectPreview from "components/Cards/SubjectPreview"
 import Section from "components/Content/Section"
 import GetGrade from "libs/GetGrade"
@@ -8,20 +7,21 @@ import SubjectGraph from "components/Stadistics/SubjectGraph.js"
 
 export default function Grados({ subjects }) {
   function crearLista(subjects) {
-    let MAX_CURSOS = 0
+    const cursos = new Map()
     subjects.forEach((subject) => {
-      if (subject.course) {
-        MAX_CURSOS++
+      if (!cursos.has(subject.course)) {
+        cursos.set(subject.course, subject.course)
       }
     })
-
-    for (let curso = 1; curso <= MAX_CURSOS; curso++) {
-      console.log()
+    const lista = []
+    for (let curso = 1; curso <= cursos.size; curso++) {
+      const aux = subjects.filter((subject) => subject.course === curso)
+      lista.push(aux)
     }
-    return MAX_CURSOS
+    return lista
   }
 
-  console.log(crearLista(subjects))
+  const items = crearLista(subjects)
 
   const listaItems = items.map((item, curso) => {
     return (
@@ -34,7 +34,7 @@ export default function Grados({ subjects }) {
               img={item.img}
               name={item.name}
               desc={item.desc}
-              linkCard={item.linkCard}
+              linkCard={""}
             />
           ))}
         />
