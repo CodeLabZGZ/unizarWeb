@@ -1,0 +1,98 @@
+export const buttons = [
+  {
+    link: "https://www.wuolah.com/",
+    img: "https://www.wuolah.com/static/media/res/icon/seo_wuolah.png",
+    name: "wuolah",
+    descp: "apuntesssss gratisss",
+  },
+  {
+    link: "http://eina.unizar.es/examenes",
+    img: "https://www.wuolah.com/static/media/res/icon/seo_wuolah.png",
+    name: "examenes",
+    descp: "",
+  },
+  {
+    link: "http://eina.unizar.es/examenes",
+    img: "https://www.wuolah.com/static/media/res/icon/seo_wuolah.png",
+    name: "calendarios examenes",
+    descp: "",
+  },
+  {
+    link: "http://eina.unizar.es/sites/eina.unizar.es/files/archivos/2021_2022/calendarios/20211110_mod_calend_acad_eina_2021-2022_grados.pdf",
+    img: "https://www.wuolah.com/static/media/res/icon/seo_wuolah.png",
+    name: "calendario academico",
+    descp: "",
+  },
+  {
+    link: "http://biblioteca.unizar.es/biblioteca-hypatia/hypatia-horario",
+    img: "https://www.wuolah.com/static/media/res/icon/seo_wuolah.png",
+    name: "horarios de bibliotecas",
+    descp: "",
+  },
+  {
+    link: "https://acceso.unizar.es/paunet/pau400login.faces",
+    img: "https://www.wuolah.com/static/media/res/icon/seo_wuolah.png",
+    name: "notas de selectividad",
+    descp: "",
+  },
+  {
+    link: "https://academico.unizar.es/acceso-admision-grado/admision/publi",
+    img: "https://www.wuolah.com/static/media/res/icon/seo_wuolah.png",
+    name: "listas de admision",
+    descp: "",
+  },
+  {
+    link: "http://www.unizar.es/alojamiento/colegios-mayores",
+    img: "https://www.wuolah.com/static/media/res/icon/seo_wuolah.png",
+    name: "residencias",
+    descp: "",
+  },
+  {
+    link: "https://academico.unizar.es/acceso-admision-grado/evau/exame",
+    img: "https://www.wuolah.com/static/media/res/icon/seo_wuolah.png",
+    name: "examenes anteriores de selectividad",
+    descp: "",
+  },
+  {
+    link: "http://biblioteca.unizar.es/",
+    img: "https://www.wuolah.com/static/media/res/icon/seo_wuolah.png",
+    name: "biblioteca",
+    descp: "",
+  },
+  {
+    link: "https://empleo.unizar.es/estudiantes/practicas-de-estudiante",
+    img: "https://www.wuolah.com/static/media/res/icon/seo_wuolah.png",
+    name: "practicas de empresa",
+    descp: "€€€",
+  },
+  {
+    link: "http://www.unizar.es/carne-universitario/tarjeta-universitaria-inteligente",
+    img: "https://www.wuolah.com/static/media/res/icon/seo_wuolah.png",
+    name: "carnet universitario",
+    descp: "",
+  },
+  {
+    link: "https://www.myunidays.com/ES/es-ES",
+    img: "https://www.wuolah.com/static/media/res/icon/seo_wuolah.png",
+    name: "ofertas universitarios",
+    descp: "",
+  },
+  {
+    link: "https://deportes.unizar.es/",
+    img: "https://www.wuolah.com/static/media/res/icon/seo_wuolah.png",
+    name: "deporte universitario",
+    descp: "",
+  },
+  {
+    link: "https://www.unizar.es/covid",
+    img: "https://www.wuolah.com/static/media/res/icon/seo_wuolah.png",
+    name: "normativas covid",
+    descp: "",
+  },
+  {
+    link: "http://www.unizar.es/noticias",
+    img: "https://www.wuolah.com/static/media/res/icon/seo_wuolah.png",
+    name: "noticias",
+    descp: "",
+  },
+]
