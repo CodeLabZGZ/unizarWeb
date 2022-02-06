@@ -40,7 +40,43 @@ const data = [
     anterior: 0,
   },
 ]
-
+// Añadir un vector-lista que importandolo desde [id] dividamos este vector por trozos y lo añadamos a data los datos correspondientes
+/* function rellenar(vector1, vector2){
+    data = [
+      {
+        name: "NP",
+        actual: vector1[0],
+        anterior: vector2[0],
+      },
+      {
+        name: "Susp",
+        actual: vector1[1],
+        anterior: vector2[1],
+      },
+      {
+        name: "Aprob",
+        actual: vector1[2],
+        anterior: vector2[2],
+      },
+      {
+        name: "Notab",
+        actual: vector1[3],
+        anterior: vector2[3],
+      },
+      {
+        name: "Sobr",
+        actual: vector1[4],
+        anterior: vector2[4],
+      },
+      {
+        name: "MH",
+        actual: vector1[5],
+        anterior: vector2[5],
+      },
+    ]
+}
+ *
+ */
 export default function App() {
   return (
     <div className="flex items-center py-5">

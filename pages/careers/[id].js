@@ -6,15 +6,28 @@ import Section from "components/Content/Section"
 import GetGrade from "libs/GetGrade"
 import SubjectGraph from "components/Stadistics/SubjectGraph.js"
 
-export default function Grados() {
+export default function Grados({ subjects }) {
+  function crearLista(subjects) {
+    let MAX_CURSOS = 0
+    subjects.forEach((subject) => {
+      if (subject.course) {
+        MAX_CURSOS++
+      }
+    })
+
+    for (let curso = 1; curso <= MAX_CURSOS; curso++) {
+      console.log()
+    }
+    return MAX_CURSOS
+  }
+
+  console.log(crearLista(subjects))
+
   const listaItems = items.map((item, curso) => {
     return (
       <div key={curso} className="px-8">
         <Section
           title={GetGrade(curso + 1)}
-          stat1={0}
-          stat2={0}
-          stat3={0}
           items={item.map((item, idx) => (
             <SubjectPreview
               key={idx}
@@ -132,4 +145,17 @@ export default function Grados() {
 
 Grados.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>
+}
+
+export async function getServerSideProps(req) {
+  const { id } = req.params
+  const parametros = new URLSearchParams({
+    careerId: id,
+  })
+  const url = `${process.env.NEXT_PUBLIC_URL}api/subjects?${parametros}`
+  const { data } = await fetch(url).then((res) => res.json())
+
+  return {
+    props: { subjects: data.subjects },
+  }
 }

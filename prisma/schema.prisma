@@ -11,7 +11,7 @@ datasource db {
 }
 
 model Carrers {
-  img  String 
+  img  String?
   name  String @id
   duration  Int
   mapsLocation String
@@ -22,9 +22,10 @@ model Carrers {
 }
 
 model Subjects {
-  img String
+  img String?
   name String @id
   credits Int @default(6)
+  course Int
   year Int
   place String
   notPresented Int?
