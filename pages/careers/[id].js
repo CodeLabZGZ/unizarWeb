@@ -4,8 +4,14 @@ import SubjectPreview from "components/Cards/SubjectPreview"
 import Section from "components/Content/Section"
 import GetGrade from "libs/GetGrade"
 import SubjectGraph from "components/Stadistics/SubjectGraph.js"
+import { useState, useEffect } from "react"
 
-export default function Grados({ subjects }) {
+export default function Grados({ career, subjects }) {
+  const ACTUAL_YEAR = new Date().getFullYear()
+  const [vec1, setVec1] = useState([])
+  const [vec2, setVec2] = useState([])
+  const [data, setData] = useState([])
+
   function crearLista(subjects) {
     const cursos = new Map()
     subjects.forEach((subject) => {
@@ -42,98 +48,156 @@ export default function Grados({ subjects }) {
     )
   })
 
+  const handleStats = async (e) => {
+    e.preventDefault()
+    const params1 = new URLSearchParams({
+      career: career,
+      place: e.target.place1.value, 
+      subject: e.target.subject1.value, 
+      year: e.target.year1.value,
+    })
+    const params2 = new URLSearchParams({
+      career: career,
+      place: e.target.place2.value, 
+      subject: e.target.subject2.value, 
+      year: e.target.year2.value,
+    })
+
+    const vec1 = await fetch(`${process.env.NEXT_PUBLIC_URL}api/notes?${params1}`).then(res => res.json())
+    const vec2 = await fetch(`${process.env.NEXT_PUBLIC_URL}api/notes?${params2}`).then(res => res.json())
+
+    setVec1(vec1.data.marks)
+    setVec2(vec2.data.marks)
+  }
+
+
+  useEffect(() => {
+    const X = ["NP", "Susp", "Aprob", "Notab", "Sobr", "MH"]
+    const getData = (vec1 , vec2) => {
+      const data = []
+      for (let i = 0; i < X.length; i++) {
+        data.push({
+          name: X[i],
+          asig1: vec1[i] || 0,
+          asig2: vec2[i] || 0
+        }) 
+      }
+      return data
+    }
+
+    setData(getData(vec1, vec2))
+  }, [vec1, vec2])
+
+  const getYears = () => {
+    const years = []
+    for(let year = 2018; year <= ACTUAL_YEAR; year++) {
+      years.push(<option key={year} value={year}>{year}</option>)
+    }
+    return years
+  }
+  const yearsOpt = getYears()
+
+  const getSubjects = (subjectList => {
+    const subjects = []
+    subjectList.forEach(subject => {
+      subjects.push(<option key={subject} value={subject}>{subject}</option>)
+    });
+    return subjects
+  })
+
+  let subjectsOpt = subjects.map(item => item.name)
+  subjectsOpt = getSubjects(Array.from(new Set(subjectsOpt)))
+
+
   return (
     <div className="bg-white">
       <Stadistics />
       <div className="flex flex-col gap-y-1 px-8">
         <div className="h-82 flex gap-x-1 w-full mb-4">
           <div className="w-1/2 bg-gray-100 rounded-tl-lg rounded-bl-lg">
-            <SubjectGraph />
+            <SubjectGraph data={data}/>
           </div>
           <div className="w-1/2 bg-gray-100 rounded-tr-lg rounded-br-lg p-5">
-            <form className="flex gap-x-5 px-5">
+            <form onSubmit={e => handleStats(e)} className="flex gap-x-5 px-5">
               <div className="flex flex-col gap-y-3 w-1/2 h-full">
-                <label className="w-full font-medium text-lg" htmlFor="animals">
+                <label className="w-full font-medium text-lg">
                   Lugar
                   <select
-                    name="Lugar"
+                    id="place1"
+                    name="place1"
                     className="block w-52 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
                   >
-                    <option value="Zgz">Zaragoza</option>
-                    <option value="Hus">Huesca</option>
-                    <option value="Ter">Teruel</option>
-                    <option value="Alm">La Almunia</option>
+                    <option value="">Selecciona una ciudad</option>
+                    <option value="zaragoza">Zaragoza</option>
+                    <option value="huesca">Huesca</option>
+                    <option value="teruel">Teruel</option>
+                    <option value="la almunia">La Almunia</option>
                   </select>
                 </label>
-                <label className="w-full font-medium text-lg" htmlFor="animals">
+                <label className="w-full font-medium text-lg">
                   Asignatura
                   <select
-                    name="Asignatura 1"
+                    id="subject1"
+                    name="subject1"
                     className="block w-52 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
                   >
                     <option value="">Selecciona una asignatura</option>
-                    <option value="Prog1">Programacion 1</option>
-                    <option value="Mat1">Mates 1</option>
-                    <option value="Mat2">Mates 2</option>
-                    <option value="IC">Introduccion a los computadores</option>
-                    <option value="FADE">
-                      Fundamentos de administracion y direccion de empresas
-                    </option>
+                    {subjectsOpt.map(opt => opt)}
                   </select>
                 </label>
-                <label className="w-full font-medium text-lg" htmlFor="animals">
+                <label className="w-full font-medium text-lg">
                   Año
                   <select
-                    name="animals"
+                    id="year1"
+                    name="year1"
                     className="block w-52 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
                   >
                     <option value="">Selecciona un año</option>
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
+                    {yearsOpt.map(opt => opt)}
                   </select>
                 </label>
               </div>
               <div className="flex flex-col gap-y-3 w-1/2 h-full">
-                <label className="w-full font-medium text-lg" htmlFor="animals">
+                <label className="w-full font-medium text-lg">
                   Lugar
                   <select
-                    name="Lugar"
+                    id="place2"
+                    name="place2"
                     className="block w-52 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
                   >
-                    <option value="Zgz">Zaragoza</option>
-                    <option value="Hus">Huesca</option>
-                    <option value="Ter">Teruel</option>
-                    <option value="Alm">La Almunia</option>
+                    <option value="">Selecciona una ciudad</option>
+                    <option value="zaragoza">Zaragoza</option>
+                    <option value="huesca">Huesca</option>
+                    <option value="teruel">Teruel</option>
+                    <option value="la almunia">La Almunia</option>
                   </select>
                 </label>
-                <label className="w-full font-medium text-lg" htmlFor="animals">
+                <label className="w-full font-medium text-lg">
                   Asignatura
                   <select
-                    name="Asignatura 1"
+                    id="subject2"
+                    name="subject2"
                     className="block w-52 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
                   >
-                    <option value="Prog1">Programacion 1</option>
-                    <option value="Mat1">Mates 1</option>
-                    <option value="Mat2">Mates 2</option>
-                    <option value="IC">Introduccion a los computadores</option>
-                    <option value="FADE">
-                      Fundamentos de administracion y direccion de empresas
-                    </option>
+                    <option value="">Selecciona una asignatura</option>
+                    {subjectsOpt.map(opt => opt)}
                   </select>
                 </label>
-                <label className="w-full font-medium text-lg" htmlFor="animals">
+                <label className="w-full font-medium text-lg">
                   Año
                   <select
-                    name="animals"
+                    id="year2"
+                    name="year2"
                     className="block w-52 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
                   >
-                    <option value="2018">2018</option>
-                    <option value="2019">2019</option>
-                    <option value="2020">2020</option>
+                    <option value="">Selecciona un año</option>
+                    {yearsOpt.map(opt => opt)}
                   </select>
                 </label>
               </div>
+              <button type="submit" className="">
+                clicka
+              </button>
             </form>
           </div>
         </div>
@@ -142,6 +206,7 @@ export default function Grados({ subjects }) {
     </div>
   )
 }
+
 
 Grados.getLayout = function getLayout(page) {
   return <Layout>{page}</Layout>
@@ -156,6 +221,6 @@ export async function getServerSideProps(req) {
   const { data } = await fetch(url).then((res) => res.json())
 
   return {
-    props: { subjects: data.subjects },
+    props: { career: id, subjects: data.subjects },
   }
 }

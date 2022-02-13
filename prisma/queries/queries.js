@@ -5,9 +5,19 @@ export async function getCarrers() {
   return query
 }
 
-export async function getSubjects(carrer) {
+export async function getSubjects(career) {
   const query = await prisma.subjects.findMany({
-    where: { carrerId: carrer },
+    where: { carrerId: career },
   })
   return query
 }
+
+// Cambiar dependiendo de los nombres de la base de datos 
+// Teoricamente devuelve todas las notas en la query, pero no se si las devolvera ordenadas como queremos o no...
+export async function getNotes(career, place, subject, year){
+  const query = await prisma.subjects.findMany({
+    where: { carrerId: career, place : place, name : subject, year: year}
+  })
+  return query[0]
+}
+
