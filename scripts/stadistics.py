@@ -34,14 +34,24 @@ def formatTable(table: BeautifulSoup, keys: list[str]) -> list[dict]:
     fdata = list(filter(lambda x: x != {}, fdata))
     return fdata
 
+years = [2020,2019,2018,2017]
+IDS = [111,144,145,146,147,148,149,151,157]
+
 def main():
     cabecera = ['Curso','Cód As','Asignatura','Mat','Rec Equi Conv','Apro','Susp','No pre', 'Tasa éxito','Tasa rend']
+    f = open('archivoSalida.csv','w',encoding="UTF-8")
+    for year in years:
+        for idcarrera in IDS:
+            html = h.getHTML(f"https://estudios.unizar.es/informe/indicadores?estudio_id={idcarrera}&anyo={year}")
+            data = h.getContent(html, 'tbody > tr')
+            data_f = formatTable(data , cabecera)
 
-    html = h.getHTML(url)
-    data = h.getContent(html, 'tbody > tr')
-    data_f = formatTable(data , cabecera)
-
-    print(data_f[0])
+        
+            for fila in data_f:
+                for campo in fila:
+                    f.write(fila[campo]+";")
+                f.write("\n")
+    f.close()
 
 if __name__ == '__main__':
     try:

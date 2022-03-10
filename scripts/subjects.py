@@ -42,14 +42,34 @@ def formatTable(table: BeautifulSoup, keys: list[str]) -> list[dict]:
     fdata = [formatRow(item, keys) for item in table]
     return fdata
 
+def formatCareer(carrera):
+    regex = r'>.+<'
+    carrera = str(carrera[0])
+    carrera = re.findall(regex, carrera)
+    carrera = str(carrera[0])
+    size = len(carrera) - 1
+    carrera = carrera[1:size]
+    return carrera
+
+IDS = [[111,558],[144,436],[145,581],[146,430],[147,440],[148,439],[149,434],[151,435],[157,470]]
+
 def main():
     cabecera = ['Curso','Periodo','Código','Nombre','Carácter','Créditos','Ofertada','Lim plazas', 'Idioma']
-
-    html = h.getHTML(url)
-    data = h.getContent(html, 'tr[data-key]')
-    data_f = formatTable(data , cabecera)
-
-    print(data_f[0])
+    carrera = ""
+    f = open('archivoSalidaCarreras.csv','w',encoding="UTF-8")
+    for idcarrera in IDS:
+        html = h.getHTML(f"https://estudios.unizar.es/estudio/asignaturas?anyo_academico=2021&estudio_id=20210{idcarrera[0]}&centro_id=110&plan_id_nk={idcarrera[1]}&sort=curso")
+        data = h.getContent(html, 'tr[data-key]')
+        carrera = h.getCareer(html)
+        carrera = formatCareer(carrera)
+        data_f = formatTable(data , cabecera)
+        for dat in data_f:
+            dat.update({'Carrera':carrera})
+        for fila in data_f:
+            for campo in fila:
+                f.write(fila[campo]+";")
+            f.write("\n")
+    f.close()
 
 if __name__ == '__main__':
     try:

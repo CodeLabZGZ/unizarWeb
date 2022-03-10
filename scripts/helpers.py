@@ -48,3 +48,8 @@ def readContent(filter, name='index.html') -> BeautifulSoup:
         print("Error reading the file: " + name)
 
     return tag
+
+def getCareer(html) -> BeautifulSoup:
+    soup = BeautifulSoup(html, 'html.parser')
+    tag = soup.find_all('h1')
+    return tag

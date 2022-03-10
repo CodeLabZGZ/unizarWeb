@@ -8,40 +8,9 @@ import {
   Legend,
 } from "recharts"
 
-const data = [
-  {
-    name: "NP",
-    actual: 3,
-    anterior: 8,
-  },
-  {
-    name: "Susp",
-    actual: 12,
-    anterior: 18,
-  },
-  {
-    name: "Aprob",
-    actual: 10,
-    anterior: 13,
-  },
-  {
-    name: "Notab",
-    actual: 3,
-    anterior: 2,
-  },
-  {
-    name: "Sobr",
-    actual: 1,
-    anterior: 0,
-  },
-  {
-    name: "MH",
-    actual: 1,
-    anterior: 0,
-  },
-]
 
-export default function App() {
+export default function SubjectGraph({data}) {
+  console.log(data)
   return (
     <div className="flex items-center py-5">
       <BarChart width={500} height={300} data={data}>
@@ -50,8 +19,8 @@ export default function App() {
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="actual" fill="#8884d8" />
-        <Bar dataKey="anterior" fill="#82ca9d" />
+        <Bar dataKey="asig1" fill="#8884d8" />
+        <Bar dataKey="asig2" fill="#82ca9d" />
       </BarChart>
     </div>
   )
